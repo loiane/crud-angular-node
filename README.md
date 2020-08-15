@@ -1,3 +1,5 @@
+ :fire: Projeto em andamento, estamos desenvolvendo nas lives na https://www.twitch.tv/loiane.
+
 # CrudAngularNode
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.

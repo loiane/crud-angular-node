@@ -9,16 +9,12 @@ import { Product } from './product';
 })
 export class ProductsService {
 
-  private products: Product[];
+  private products: Product[] = [];
 
   constructor(private http: HttpClient) {
-    this.products = [
-      { id: 1, name: 'Produto 1' },
-      { id: 2, name: 'Produto 2' },
-      { id: 3, name: 'Produto 3' },
-      { id: 4, name: 'Produto 4' },
-      { id: 5, name: 'Produto 5' },
-    ];
+    for (let i = 1; i <= 10; i++) {
+      this.products.push({id: i, name: `Product ${i}`});
+    }
    }
 
   listAll(): Observable<Product[]> {

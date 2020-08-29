@@ -11,7 +11,7 @@ import { Product } from '../product';
 export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
 
   constructor(private service: ProductsService) { }
 
@@ -20,6 +20,18 @@ export class ProductsComponent implements OnInit {
       console.log(results);
       this.products = results;
     });
+  }
+
+  onAdd(): void {
+    console.log('Add');
+  }
+
+  onEdit(product: Product): void {
+    console.log(product);
+  }
+
+  onRemove(product: Product): void {
+    console.log(product);
   }
 
 }

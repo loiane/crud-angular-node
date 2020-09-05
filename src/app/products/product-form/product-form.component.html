@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-toolbar color="primary">Product Details</mat-toolbar>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Product Name</mat-label>
+        <input matInput formControlName="name" placeholder="product">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button>Cancel</button>
+  </mat-card-actions>
+</mat-card>

@@ -4,12 +4,15 @@
     <form class="example-form" [formGroup]="form">
       <mat-form-field class="example-full-width">
         <mat-label>Product Name</mat-label>
-        <input matInput formControlName="name" placeholder="product">
+        <input matInput formControlName="name" placeholder="Product Name">
+        <mat-error *ngIf="isFieldRequired('name')">
+          Product Name is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary">Save</button>
-    <button mat-raised-button>Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
   </mat-card-actions>
 </mat-card>

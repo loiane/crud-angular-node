@@ -1,5 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Product } from '../product';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-form',
@@ -10,7 +14,9 @@ export class ProductFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private location: Location,
+              private service: ProductsService) {
     this.form = this.fb.group({
       name: [null, Validators.required]
     });
@@ -18,4 +24,23 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  onSubmit(): void {
+    if (this.form.valid) {
+      // create
+      const product: Product = this.form.value;
+      product.id = 0;
+      this.service.save(product);
+      this.onCancel();
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  onCancel(): void {
+    this.location.back();
+  }
+
+  isFieldRequired(fieldName: string): boolean {
+   return this.form.get(fieldName)?.hasError('required') ?? false;
+  }
 }

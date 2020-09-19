@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { ProductsService } from '../products.service';
 import { Product } from '../product';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,9 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   displayedColumns: string[] = ['id', 'name', 'actions'];
 
-  constructor(private service: ProductsService) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private service: ProductsService) { }
 
   ngOnInit(): void {
     this.service.listAll().subscribe(results => {
@@ -23,7 +26,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onAdd(): void {
-    console.log('Add');
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 
   onEdit(product: Product): void {

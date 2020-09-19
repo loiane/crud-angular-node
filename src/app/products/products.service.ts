@@ -9,6 +9,8 @@ import { Product } from './product';
 })
 export class ProductsService {
 
+  private ID_COUNT = 11;
+
   private products: Product[] = [];
 
   constructor(private http: HttpClient) {
@@ -19,5 +21,15 @@ export class ProductsService {
 
   listAll(): Observable<Product[]> {
     return of(this.products);
+  }
+
+  save(product: Product): void { // TODO: mudar retorno para Observable
+    if (product.id === 0) { // create
+      product.id = this.ID_COUNT;
+      this.products.push(product);
+      this.ID_COUNT++;
+    } else {
+      // edit
+    }
   }
 }
